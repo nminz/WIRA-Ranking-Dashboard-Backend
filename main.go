@@ -4,8 +4,10 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"fmt"
+	"log"
 	"math"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -314,6 +316,14 @@ func main() {
 	if db == nil {
 		return ////////// Exit if connection failed
 	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // Fallback for local development
+	}
+
+	log.Printf("Listening on port %s...", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 
 	createTables(db)
 	generateFakeData(db)
