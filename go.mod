@@ -1,6 +1,6 @@
 module wira-backend
 
-go 1.23.2
+go 1.23.0
 
 require github.com/pquerna/otp v1.4.0
 
